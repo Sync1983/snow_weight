@@ -26,8 +26,8 @@ function updatePoints(){
           coordinates: [pt.lng*1.0, pt.lat*1.0]
         },
         properties: {            
-          iconContent: (pt.raw_data * 1.0).toFixed(0),
-          hintContent: (pt.raw_data * 1.0).toFixed(0)
+          iconContent: ((5287 - pt.raw_data) / 2.0).toFixed(1),
+          hintContent: ((5287 - pt.raw_data) / 2.0).toFixed(1)
         }
       });
       map.geoObjects.add(bln); // Размещение геообъекта на карте.
