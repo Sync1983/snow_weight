@@ -2,10 +2,12 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'pgsql:host=atcserv;port=6543;dbname=test_snow',
+    'username' => 'client',
+    'password' => 'client',
     'charset' => 'utf8',
+    'enableQueryCache' => false,
+
 
     // Schema cache options (for production environment)
     //'enableSchemaCache' => true,

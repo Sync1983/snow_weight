@@ -12,8 +12,15 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => [
+          'bundles' => [
+            'yii\web\JqueryAsset' => [
+              'sourcePath' => null,   // do not publish the bundle
+              'js' => ['//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',]
+            ],                
+          ],
+        ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'MV8QRcVxkViw1okW4RSPIhhfYJ9z5mpb',
         ],
         'cache' => [
@@ -26,13 +33,10 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+        /*'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',            
             'useFileTransport' => true,
-        ],
+        ],*/
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -47,8 +51,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            '/' => 'site/index',
-            'load' => 'incom/load',
+              '/' => 'site/index',
+              'load' => 'incom/load',
+              'points' => 'incom/points'
             ],
         ],
         /*

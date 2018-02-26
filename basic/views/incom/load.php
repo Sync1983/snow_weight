@@ -1,4 +1,12 @@
 <?php
 /* @var $this yii\web\View */
-echo $get;
+
 ?>
+<?=$a?>
+<br>
+<?=$b?>
+<br>
+<?=$c?>
+<br>
+<?=$d?>
+<br>
