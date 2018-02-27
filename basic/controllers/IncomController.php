@@ -31,7 +31,14 @@ class IncomController extends \yii\web\Controller {
   }
   
   public function actionPoints(){    
-    $sql = 'select MAX("date") as Date ,"IMEI", AVG("geo"[0]) as lat, AVG("geo"[1]) as lng, AVG("raw_data") as raw_data from rawdata group by "IMEI";';
+    $sql = 'select MAX("date") as Date ,"IMEI", MAX("geo"[0]) as lat, MAX("geo"[1]) as lng, AVG("raw_data") as raw_data from rawdata group by "IMEI";';
+    $all = \app\models\Rawdata::findBySql($sql)->asArray()->all();
+    return json_encode($all);
+  }
+  
+  public function actionHistory(){
+    $imei = intval($_GET['d']);     
+    $sql = 'select date,raw_data as weight from rawdata where date>(NOW() - INTERVAL \'1 day\') and "IMEI" = ' . $imei . ' ORDER BY date;';
     $all = \app\models\Rawdata::findBySql($sql)->asArray()->all();
     return json_encode($all);
   }

@@ -16,26 +16,18 @@ use yii\web\View;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
-{
+class ChartJsAsset extends AssetBundle{
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-        'css/index.css',
-    ];
-    public $js = [
-      'js/main.js',
-      'https://api-maps.yandex.ru/2.1/?lang=ru_RU&onload=mapInit'
+    public $css = [];
+    public $js = [ 
+      "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"
     ];
      public $jsOptions = [
-        'position' => \yii\web\View::POS_HEAD
+        'position' => \yii\web\View::POS_BEGIN
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
-    public $publishOptions = [
-      'forceCopy' => true,
+        'app\assets\AppAsset'
     ];
 }

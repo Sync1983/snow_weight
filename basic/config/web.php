@@ -53,7 +53,8 @@ $config = [
             'rules' => [
               '/' => 'site/index',
               'load' => 'incom/load',
-              'points' => 'incom/points'
+              'points' => 'incom/points',
+              'history' => 'incom/history'
             ],
         ],
         /*
