@@ -21,6 +21,10 @@ var chartOptions = {
   }
 };
 
+function ConvertValue(value){
+  return 3.0+(value-641703)/16000;
+}
+
 function pointSelect(e){
   var object = e.get('target');    
   var imei = object.properties.get('imei');  
@@ -43,7 +47,7 @@ function pointSelect(e){
     for(var i in res){
       var row = res[i];
       labels.push(row.date);
-      data.push(((5287 - row.weight) / 2.0).toFixed(1))
+      data.push(ConvertValue(row.weight).toFixed(1));
     }
     
     line_chart.data.labels = labels;
@@ -82,8 +86,8 @@ function updatePoints(){
           coordinates: [pt.lng*1.0, pt.lat*1.0]
         },
         properties: {            
-          iconContent: ((5287 - pt.raw_data) / 2.0).toFixed(1),
-          hintContent: ((5287 - pt.raw_data) / 2.0).toFixed(1),
+          iconContent: ConvertValue(pt.raw_data).toFixed(1),
+          hintContent: ConvertValue(pt.raw_data).toFixed(1),
           imei: pt.IMEI
         }
       });
@@ -99,7 +103,7 @@ function updatePoints(){
 }
   
 $(document).ready(function(){
-  update_timer = setInterval(updatePoints, 2000);  
+  update_timer = setInterval(updatePoints, 30000);  
   
   var div_chart = document.getElementById("chart");
   

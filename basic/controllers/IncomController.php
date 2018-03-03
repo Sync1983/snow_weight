@@ -31,8 +31,8 @@ class IncomController extends \yii\web\Controller {
   }
   
   public function actionPoints(){    
-    $sql = 'select MAX("date") as Date ,"IMEI", MAX("geo"[0]) as lat, MAX("geo"[1]) as lng, AVG("raw_data") as raw_data from rawdata group by "IMEI";';
-    $all = \app\models\Rawdata::findBySql($sql)->asArray()->all();
+    $sql = 'select "date" as Date ,"IMEI", "geo"[0] as lat, "geo"[1] as lng, "raw_data" from rawdata as g INNER JOIN(select max("date") as d,"IMEI" as i from rawdata group by "IMEI") r2 ON (r2.i=g."IMEI" and r2.d=g.date);';
+    $all = \app\models\Rawdata::findBySql($sql)->asArray()->all();    
     return json_encode($all);
   }
   
